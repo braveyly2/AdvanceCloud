@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.hust</groupId>
+    <artifactId>lw</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>lw</name>
+    <description>Demo project for Spring cloud</description>
+    <modules>
+        <module>eruakeserver</module>
+        <module>produce</module>
+        <module>consume</module>
+        <module>feignconsume</module>
+    </modules>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.cloud</groupId>
+                <artifactId>eruakeserver</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.cloud</groupId>
+                <artifactId>consume</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.hust.cloud</groupId>
+                <artifactId>produce</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.hust.cloud</groupId>
+                <artifactId>feignconsume</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+
+</project>
