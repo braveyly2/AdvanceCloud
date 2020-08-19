@@ -35,3 +35,9 @@ Kubectl label node node1 disktype-     #为node删除标签
 kubectl run busybox --rm -ti --image=busybox /bin/sh
 wget nginx-serv.default:8080
 
+//滚动更新
+kubectl apply -f httpd-app.v1.yaml --record
+kubectl apply -f httpd-app.v2.yaml --record
+kubectl apply -f httpd-app.v3.yaml --record
+kubectl rollout undo deployment httpd --to-revision=1
+
