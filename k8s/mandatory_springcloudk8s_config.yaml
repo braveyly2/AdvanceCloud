@@ -1,0 +1,61 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: springcloudk8s-config-svc
+  namespace: ns-springcloudk8s
+  labels:
+    svc: lb-springcloudk8s-config
+spec:
+  type: NodePort
+  ports:
+    - port: 8015
+      targetPort: 8015
+      nodePort: 30095
+  selector:
+    container: lb-springcloudk8s-config
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springcloudk8s-config-app
+  labels:
+    app: lb-springcloudk8s-config
+  namespace: ns-springcloudk8s
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      container: lb-springcloudk8s-config
+  template:
+    metadata:
+      labels:
+        container: lb-springcloudk8s-config
+    spec:
+      #terminationGracePeriodSeconds: 60
+      serviceAccountName: springcloudk8s-serviceaccount
+      containers:
+        - name: springcloudk8s-config-container
+          # Any image is permissible as long as:
+          # 1. It serves a 404 page at /
+          # 2. It serves 200 on a /healthz endpoint
+          image: 10.0.2.7:5000/springcloudk8sconfig:latest
+          #livenessProbe:
+          #  httpGet:
+          #    path: /health
+          #    port: 8099
+          #    scheme: HTTP
+          #  initialDelaySeconds: 30
+          #  timeoutSeconds: 5
+          ports:
+            - containerPort: 8015
+          #resources:
+          #  limits:
+          #    cpu: 10m
+          #    memory: 20Mi
+          #  requests:
+          #    cpu: 10m
+          #    memory: 20Mi
+
