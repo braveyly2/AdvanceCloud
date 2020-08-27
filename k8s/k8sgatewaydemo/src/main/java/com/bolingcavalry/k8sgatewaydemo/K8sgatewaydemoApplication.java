@@ -15,6 +15,7 @@ public class K8sgatewaydemoApplication {
         SpringApplication.run(K8sgatewaydemoApplication.class, args);
     }
 
+    /*
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
@@ -29,4 +30,5 @@ public class K8sgatewaydemoApplication {
                         .uri("lb://springcloudk8s-web-svc")
                 ).build();
     }
+    */
 }
