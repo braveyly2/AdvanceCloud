@@ -1,0 +1,61 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: springcloudk8s-reload-config-svc
+  namespace: ns-springcloudk8s
+  labels:
+    svc: lb-springcloudk8s-reload-config
+spec:
+  type: NodePort
+  ports:
+    - port: 8016
+      targetPort: 8016
+      nodePort: 30096
+  selector:
+    container: lb-springcloudk8s-reload-config
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springcloudk8s-reload-config-app
+  labels:
+    app: lb-springcloudk8s-reload-config
+  namespace: ns-springcloudk8s
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      container: lb-springcloudk8s-reload-config
+  template:
+    metadata:
+      labels:
+        container: lb-springcloudk8s-reload-config
+    spec:
+      #terminationGracePeriodSeconds: 60
+      serviceAccountName: springcloudk8s-serviceaccount
+      containers:
+        - name: springcloudk8s-reload-config-container
+          # Any image is permissible as long as:
+          # 1. It serves a 404 page at /
+          # 2. It serves 200 on a /healthz endpoint
+          image: 10.0.2.7:5000/springcloudk8sreloadconfig:latest
+          #livenessProbe:
+          #  httpGet:
+          #    path: /health
+          #    port: 8099
+          #    scheme: HTTP
+          #  initialDelaySeconds: 30
+          #  timeoutSeconds: 5
+          ports:
+            - containerPort: 8016
+          #resources:
+          #  limits:
+          #    cpu: 10m
+          #    memory: 20Mi
+          #  requests:
+          #    cpu: 10m
+          #    memory: 20Mi
+
