@@ -8,10 +8,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - myapp.zhangbiao.com
+    - ticket.qunaer.com
     secretName: myapp-ingress-secret
   rules: 
-  - host: myapp.zhangbiao.com
+  - host: ticket.qunaer.com
     http:
       paths: 
       - path:  
