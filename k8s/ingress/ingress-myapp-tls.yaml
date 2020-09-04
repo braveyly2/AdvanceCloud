@@ -9,6 +9,7 @@ spec:
   tls:
   - hosts:
     - ticket.qunaer.com
+    - travel.qunaer.com
     secretName: myapp-ingress-secret
   rules: 
   - host: ticket.qunaer.com
@@ -16,5 +17,12 @@ spec:
       paths: 
       - path:  
         backend: 
+          serviceName: myapp
+          servicePort: 80
+  - host: travel.qunaer.com
+    http:
+      paths:
+      - path:
+        backend:
           serviceName: myapp
           servicePort: 80
