@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: service-provider
+
+server:
+  port: 8089
+
+management:
+  server:
+    port: 8090
+  endpoints:
+    web:
+      exposure:
+        include: "*"
