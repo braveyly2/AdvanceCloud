@@ -50,6 +50,11 @@ spec:
             initialDelaySeconds: 15    
             timeoutSeconds: 2
             periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8089
+            
              
           #resources:
            # limits:
