@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: normal-service-provider-svc-route
+spec:
+  hosts:
+  - normal-service-provider-svc
+  http:
+  - route:
+    - destination:
+        host: normal-service-provider-svc
+        subset: v1
+      weight: 50
+    - destination:
+        host: normal-service-provider-svc
+        subset: v2
+      weight: 50
