@@ -1,0 +1,13 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: normal-service-customer-svc-route-timeout
+spec:
+  hosts:
+  - normal-service-customer-svc
+  http:
+  - route:
+    - destination:
+        host: normal-service-customer-svc
+        subset: v1
+      timeout: 1s

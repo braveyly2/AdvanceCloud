@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: normal-service-customer-svc
+spec:
+  type: NodePort
+  ports:
+    - name: http-server
+      nodePort: 31003
+      port: 8084
+      targetPort: 8084
+    - name: http-management
+      nodePort: 31004
+      port: 8085
+      targetPort: 8085
+  selector:
+    app: lb-normal-service-customer-app
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: normal-service-customer-app-v1
+  labels:
+    app: lb-normal-service-customer-app
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lb-normal-service-customer-app
+  template:
+    metadata:
+      name: normal-service-customer-pod
+      labels:
+        app: lb-normal-service-customer-app
+        version: v1
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: normal-service-customer-container
+          image: 10.0.2.7:5000/normal-service-customer:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8084
+              name: server
+            - containerPort: 8085
+              name: management
+          #resources:
+          #  limits:
+          #   memory: 1000Mi
+          #    cpu: 1000m
+          #  requests:
+          #    memory: 500Mi
+          #    cpu: 500m
