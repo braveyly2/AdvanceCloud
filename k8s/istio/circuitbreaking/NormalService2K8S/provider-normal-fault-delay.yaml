@@ -9,7 +9,7 @@ spec:
   - fault:
       delay:
         fixedDelay: 4s
-        percent: 100
+        percent: 70
     route:
     - destination:
         host: normal-service-provider-svc

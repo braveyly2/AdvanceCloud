@@ -6,8 +6,8 @@ spec:
   hosts:
   - normal-service-customer-svc
   http:
-  - route:
-    - destination:
-        host: normal-service-customer-svc
-        subset: v1
-      timeout: 1s
+    - timeout: 1s
+      route:
+        - destination:
+            host: normal-service-customer-svc
+            subset: v1

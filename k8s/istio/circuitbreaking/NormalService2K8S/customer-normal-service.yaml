@@ -24,7 +24,7 @@ metadata:
     app: lb-normal-service-customer-app
     version: v1
 spec:
-  replicas: 1
+  replicas: 5
   selector:
     matchLabels:
       app: lb-normal-service-customer-app
