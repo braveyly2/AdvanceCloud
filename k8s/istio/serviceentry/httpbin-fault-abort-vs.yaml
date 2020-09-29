@@ -1,0 +1,33 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+ name: httpbin-fault-abort-vs
+spec:
+ hosts:
+ - httpbin.org
+ http:
+ - match:
+   #- sourceLables:
+   #    app: normal-service-customer-svc
+   #    version: v1
+   - headers:
+       end-user:
+         exact: lw
+   fault:
+     abort:
+       percentage: 
+         value: 100.0
+       httpStatus: 403
+   route:
+   - destination:
+       host: httpbin.org
+ - route:
+   - destination:
+       host: httpbin.org
+ #- route:
+   #- destination:
+       #host: httpbin.org
+   #fault:
+     #abort:
+       #percent: 100
+       #httpStatus: 403

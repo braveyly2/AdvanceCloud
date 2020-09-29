@@ -1,0 +1,56 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+ name: httpbin-egressgateway
+spec:
+ selector:
+   istio: egressgateway
+ servers:
+   - port:
+       number: 80
+       name: http
+       protocol: HTTP
+     hosts:
+       - httpbin.org
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+ name: httpbin-egressgateway-dr
+spec:
+ host: istio-egressgateway.istio-system.svc.cluster.local
+ subsets:
+   - name: ext
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+ name: httpbin-meshgateway-egressgateway-vs
+spec:
+ hosts:
+   - httpbin.org # 这一对象对域名 “httpbin.org” 生效。
+ gateways: # 本对象所针对的 Gateway。
+   - httpbin-egressgateway # 前面为 “httpbin.org” 注册的 Egress gateway。
+   - mesh # 内置 Gateway，代表网格中的所有 Sidecar
+ http:
+   - match: # 这一条规则匹配的是 “mesh” Gateway 的流量
+       - gateways:
+           - mesh
+         port: 80
+     route: # 如果是 “mesh” gateway 的流量，则转发到 egress 网关服务。
+       - destination:
+           host: istio-egressgateway.istio-system.svc.cluster.local
+           subset: ext
+           port:
+             number: 80
+         weight: 100
+   - match:
+       - gateways: # 这一条规则匹配的是外发流量
+           - httpbin-egressgateway
+         port: 80
+     route: # 通过 Service Entry 流向目标的外网流量
+       - destination:
+           host: httpbin.org
+           port:
+             number: 80
+         weight: 100
