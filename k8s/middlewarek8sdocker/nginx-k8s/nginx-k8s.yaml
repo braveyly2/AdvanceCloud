@@ -1,0 +1,59 @@
+# API 版本号
+apiVersion: apps/v1
+# 类型，如：Pod/ReplicationController/Deployment/Service/Ingress
+kind: Deployment
+metadata:
+  # Kind 的名称
+  name: nginx-k8s-app
+spec:
+  selector:
+    matchLabels:
+      # 容器标签的名字，发布 Service 时，selector 需要和这里对应
+      app: lb-nginx-k8s-app
+  # 部署的实例数量
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: lb-nginx-k8s-app
+    spec:
+      # 配置容器，数组类型，说明可以配置多个容器
+      containers:
+      # 容器名称
+      - name: nginx
+        # 容器镜像
+        image: nginx:1.18
+        # 只有镜像不存在时，才会进行镜像拉取
+        imagePullPolicy: IfNotPresent
+        ports:
+        # Pod 端口
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /etc/nginx/nginx.conf
+          name: nginx-config
+          subPath: nginx.conf
+        - mountPath: /home/wwwroot/test
+          name: nginx-data
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: nginx-k8s-conf-cm
+        - name: nginx-data
+          hostPath:
+            path: /home/wwwroot/test
+            type: Directory
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-k8s-serv
+spec:
+  type: NodePort
+  selector:
+    app: lb-nginx-k8s-app
+  ports:
+   - protocol: TCP
+     nodePort: 30000
+     port: 8080
+     targetPort: 80
+
