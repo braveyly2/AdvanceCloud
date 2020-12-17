@@ -11,7 +11,7 @@ public class MemoryLeakDemo {
     jmap -dump:format=b,file=javaml.hprof 16289
     手动主动生成dump
 
-    然后用JProfiler来分析
+    然后用JProfiler来分析，查看OOM的信息或者在未OOM时查看最大对象
     * */
     /*
     ML Demo 1519770

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CPUHigh:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CPUHigh_jar</output-path>
+    <root id="archive" name="CPUHigh.jar">
+      <element id="module-output" name="CPUHigh" />
+    </root>
+  </artifact>
+</component>
