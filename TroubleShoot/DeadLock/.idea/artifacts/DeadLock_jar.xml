@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="DeadLock:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/DeadLock_jar</output-path>
+    <root id="archive" name="DeadLock.jar">
+      <element id="module-output" name="DeadLock" />
+    </root>
+  </artifact>
+</component>
