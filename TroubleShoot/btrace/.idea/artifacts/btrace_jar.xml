@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="btrace:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/btrace_jar</output-path>
+    <root id="archive" name="btrace.jar">
+      <element id="module-output" name="btrace" />
+    </root>
+  </artifact>
+</component>
