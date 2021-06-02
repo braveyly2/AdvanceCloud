@@ -7,9 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c57cb26-23bf-41c5-b170-dfbd71159b33" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../CPUHigh/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../CPUHigh/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DeadLock/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DeadLock/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MemoryLeakDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MemoryLeakDemo.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,7 +21,7 @@
     <session id="-766722252">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.opened" value="2" />
@@ -166,7 +165,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="7" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2497979" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -175,7 +173,7 @@
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="JProfiler" visible="true" weight="0.3285968" />
+      <window_info anchor="bottom" id="JProfiler" weight="0.3285968" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
